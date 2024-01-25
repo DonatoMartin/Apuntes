@@ -1,42 +1,28 @@
+
+
+- [SDI](#sdi)
+  - [Plataformas Java](#plataformas-java)
+- [Tema 1 - JEE y Patrones](#tema-1---jee-y-patrones)
+  - [Arquitectura Web Básica](#arquitectura-web-básica)
+  - [Servlets](#servlets)
+  - [Contenedor de servlets/Web container](#contenedor-de-servletsweb-container)
+  - [Ciclo de vida](#ciclo-de-vida)
+  - [Métodos doGet y doPost](#métodos-doget-y-dopost)
+  - [Registro de un servlet](#registro-de-un-servlet)
+  - [JSP](#jsp)
+  - [Glosario](#glosario)
+
+
 # SDI
 
 Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo software avanzado, a través de técnicas clásicas y/o ágiles como pueden ser JEE, Spring Boot, Selenium, NodeJs o servicios REST/SOAP, a parte del uso de patrones de diseño en los que se profundizarán más adelante.
 
-## Tabla de contenidos
-- [SDI](#sdi)
-  - [Tabla de contenidos](#tabla-de-contenidos)
-  - [Introducción](#introducción)
-    - [Información general de la asignatura](#información-general-de-la-asignatura)
-    - [Plataformas Java](#plataformas-java)
-  - [Tema 1: Introducción al desarrollo web - JEE y Patrones](#tema-1-introducción-al-desarrollo-web---jee-y-patrones)
-    - [Arquitectura Web Básica](#arquitectura-web-básica)
-    - [Servlets](#servlets)
-    - [Contenedor de servlets/Web container](#contenedor-de-servletsweb-container)
-    - [Ciclo de vida](#ciclo-de-vida)
-    - [Métodos doGet y doPost](#métodos-doget-y-dopost)
-    - [Registro de un servlet](#registro-de-un-servlet)
-    - [JSP](#jsp)
-  - [Tema 2: Arquitectura MVC con Spring Boot](#tema-2-arquitectura-mvc-con-spring-boot)
-  - [Tema 3: Acceso a datos, Autenticación - Control de acceso - Validación en el servidor](#tema-3-acceso-a-datos-autenticación---control-de-acceso---validación-en-el-servidor)
-  - [Tema 4: Sesión - Roles - Consultas - Búsqueda - Paginación](#tema-4-sesión---roles---consultas---búsqueda---paginación)
-  - [Tema 5: Web testing con Selenium](#tema-5-web-testing-con-selenium)
-  - [Tema 6: Desarrollo web con Nodejs 1](#tema-6-desarrollo-web-con-nodejs-1)
-  - [Tema 7: Desarrollo web con Nodejs 2](#tema-7-desarrollo-web-con-nodejs-2)
-  - [Tema 8: Servicios web REST](#tema-8-servicios-web-rest)
-  - [Tema 9: Servicios web SOAP](#tema-9-servicios-web-soap)
-  - [Glosario](#glosario)
+| Información general sobre la asignatura |
+| - |
+| CV: https://www.campusvirtual.uniovi.es/course/view.php?id=1313 |
+| Versión de Java utilizada: Java 17 |
 
-
-## Introducción
-
-
-
-### Información general de la asignatura
-| |   |
-|---|---|
-|  Versión de Java utilizada | 17  |
-
-### Plataformas Java
+## Plataformas Java
 
 | Plataformas Java         | Características  |
 |--------------------------|------------------|
@@ -45,30 +31,32 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
 | Java Micro Edition       | - Proporciona un entorno robusto y flexible para aplicaciones en dispositivos móviles y empotrados <br> - Incluye perfiles para dispositivos móviles y televisores |
 | JavaFX Script            | - Lenguaje de scripting para JavaFX <br> - Desarrollo de interfaces de usuario ricas para aplicaciones de escritorio, móviles, TV y web |
 
-## Tema 1: Introducción al desarrollo web - JEE y Patrones
+# Tema 1 - JEE y Patrones
 
+## Arquitectura Web Básica
 
-### Arquitectura Web Básica
 Un cliente (Navegador) envía una petición de un recurso (URL) a un servidor (Servidor HTTP) y éste le responde vía HTTP
 
 Cuando el navegador solicita una página web, recibe la página y desencadena una petición para cada uno de los
 recursos asociados a la misma.
 
-### Servlets
+## Servlets
 
 Un servlet es una clase Java que hereda de la clase JEE HTTPServlet y que:
-  - Acepta peticiones de cualquier método HTTP (get, post, put, delete, head, trace, …)
-  - Responde también usando el protocolo HTTP
-  - Se ejecuta dentro de un contenedor de Servlets que a su vez está dentro de un servidor de aplicaciones JEE
 
-### Contenedor de servlets/Web container
- - Un contenedor define un ambiente estandarizado de ejecución que provee servicios
+- Acepta peticiones de cualquier método HTTP (get, post, put, delete, head, trace, …)
+- Responde también usando el protocolo HTTP
+- Se ejecuta dentro de un contenedor de Servlets que a su vez está dentro de un servidor de aplicaciones JEE
+
+## Contenedor de servlets/Web container
+
+- Un contenedor define un ambiente estandarizado de ejecución que provee servicios
 específicos a los servlets. Por ejemplo, dan servicio a las peticiones de los clientes, realizando
 un procesamiento y devolviendo el resultado
- - Los servlets tienen que cumplir un contrato con el contenedor para obtener sus servicios.
- - Los contratos son interfaces Java.Por ejemplo, la interfaz Servlet.
+- Los servlets tienen que cumplir un contrato con el contenedor para obtener sus servicios.
+- Los contratos son interfaces Java.Por ejemplo, la interfaz Servlet.
 
-### Ciclo de vida
+## Ciclo de vida
 
 **INICIALIZACIÓN**: Una única llamada al metodo “init” por parte del contenedor de servlets
 public void init(ServletConfig config) throws ServletException. Se pueden recoger unos
@@ -79,7 +67,7 @@ peticiones se invocan en un nuevo hilo mapeado sobre service
 **DESTRUCCIÓN**: Cuando todas las llamadas desde el cliente cesen o un temporizador del
 servidor así lo indique. Se deben liberar recursos retenidos desde init() public void destroy()
 
-### Métodos doGet y doPost
+## Métodos doGet y doPost
 Son llamados desde el método service(). Reciben interfaces instanciada:
 
 ```java
@@ -93,7 +81,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 }
 ```
 
-### Registro de un servlet
+## Registro de un servlet
 
 **Opción 1**: Despliegue de web.xml
 ```xml
@@ -124,22 +112,14 @@ public class HolaMundoServlet extends HttpServlet {
 }
 ```
 
-### JSP
+## JSP
 
 Java Server Pages es una tecnología para crear páginas web dinámicas. Estas páginas están construidas sobre servlets y vienen a resolver el problema de presentación de los mismos.
 Permiten generar HTML directamente por código.
 
-## Tema 2: Arquitectura MVC con Spring Boot
-## Tema 3: Acceso a datos, Autenticación - Control de acceso - Validación en el servidor
-## Tema 4: Sesión - Roles - Consultas - Búsqueda - Paginación
-## Tema 5: Web testing con Selenium
-## Tema 6: Desarrollo web con Nodejs 1
-## Tema 7: Desarrollo web con Nodejs 2
-## Tema 8: Servicios web REST
-## Tema 9: Servicios web SOAP
 ## Glosario
 
 | Término | Definición |
-|---------|------------|
-| URL     | Unique Resource Locator. |
-| HTTP    | HyperText Transfer Protocol. protocolo de aplicación utilizado para el intercambio de información en la Web mediante el paso de mensajes. |
+|- | - |
+| URL | Unique Resource Locator. |
+| HTTP | HyperText Transfer Protocol. protocolo de aplicación utilizado para el intercambio de información en la Web mediante el paso de mensajes. |
