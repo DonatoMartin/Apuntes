@@ -18,6 +18,13 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
     - [JSP](#jsp)
   - [Tema 2: Arquitectura MVC con Spring Boot](#tema-2-arquitectura-mvc-con-spring-boot)
   - [Tema 3: Acceso a datos, Autenticación - Control de acceso - Validación en el servidor](#tema-3-acceso-a-datos-autenticación---control-de-acceso---validación-en-el-servidor)
+    - [Patrones arquitectónicos y de diseños](#patrones-arquitectónicos-y-de-diseños)
+      - [Tipos de patrones:](#tipos-de-patrones)
+      - [Arquitecturas en desuso:](#arquitecturas-en-desuso)
+      - [Otras arquitecturas:](#otras-arquitecturas)
+        - [N-Capas:](#n-capas)
+        - [Fachada:](#fachada)
+        - [Capas:](#capas)
   - [Tema 4: Sesión - Roles - Consultas - Búsqueda - Paginación](#tema-4-sesión---roles---consultas---búsqueda---paginación)
   - [Tema 5: Web testing con Selenium](#tema-5-web-testing-con-selenium)
   - [Tema 6: Desarrollo web con Nodejs 1](#tema-6-desarrollo-web-con-nodejs-1)
@@ -130,7 +137,33 @@ Java Server Pages es una tecnología para crear páginas web dinámicas. Estas p
 Permiten generar HTML directamente por código.
 
 ## Tema 2: Arquitectura MVC con Spring Boot
+- Spring Boot: es una forma fácil de desarrollar aplicaciones en Spring.
+
 ## Tema 3: Acceso a datos, Autenticación - Control de acceso - Validación en el servidor
+
+### Patrones arquitectónicos y de diseños
+
+#### Tipos de patrones:
+- Arquitectónicos: Relacionados con el diseño a gran escala y de granularidad gruesa. (Capas)
+- Diseño: Relacionados con el diseño de objetos y frameworks de pequeña y mediana escala. (Fachada)
+- Estilos: Soluciones de diseño de bajo nivel orientadas a la implementación o al lenguaje (Singleton)
+
+#### Arquitecturas en desuso:
+- Model-1.5
+- Model-2: Vista-Controlador = JavaBeans-JSPs-Servlets//TODO
+
+#### Otras arquitecturas:
+##### N-Capas:
+- Capas(layers) de presentación, negocio y persistencia.
+- Tiers: capas físicas de la arquitectura de despliegue del hardware:
+- Las capas se despliegan sobre las tiers.
+
+##### Fachada:
+
+
+##### Capas:
+
+
 ## Tema 4: Sesión - Roles - Consultas - Búsqueda - Paginación
 ## Tema 5: Web testing con Selenium
 ## Tema 6: Desarrollo web con Nodejs 1
@@ -143,3 +176,6 @@ Permiten generar HTML directamente por código.
 |---------|------------|
 | URL     | Unique Resource Locator. |
 | HTTP    | HyperText Transfer Protocol. protocolo de aplicación utilizado para el intercambio de información en la Web mediante el paso de mensajes. |
+| Patrón  | 
+| Spring  | Framework basado en JEE que usa el patrón MVC para el desarrollo de aplicaciones  web. Usa un modelo POJO
+| POJO    | Modelo basado en clases planas sin herencia de otras 
