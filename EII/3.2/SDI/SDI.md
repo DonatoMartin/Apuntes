@@ -1,4 +1,5 @@
 
+# SDI
 
 - [SDI](#sdi)
   - [Plataformas Java](#plataformas-java)
@@ -10,26 +11,37 @@
   - [Métodos doGet y doPost](#métodos-doget-y-dopost)
   - [Registro de un servlet](#registro-de-un-servlet)
   - [JSP](#jsp)
-  - [Glosario](#glosario)
+  - [Introducción a Patrones](#introducción-a-patrones)
+- [Spring Boot](#spring-boot)
+  - [Framework Spring](#framework-spring)
+  - [Maven](#maven)
 
 
-# SDI
+| Criterios de calificación | Porcentaje    |
+| -                         | -             |
+| Teoría                    | 40 %          |
+| Práctica                  | 60%           |
 
 Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo software avanzado, a través de técnicas clásicas y/o ágiles como pueden ser JEE, Spring Boot, Selenium, NodeJs o servicios REST/SOAP, a parte del uso de patrones de diseño en los que se profundizarán más adelante.
 
-| Información general sobre la asignatura |
-| - |
-| CV: https://www.campusvirtual.uniovi.es/course/view.php?id=1313 |
-| Versión de Java utilizada: Java 17 |
+| Información general sobre la asignatura                           |
+| -                                                                 |
+| CV: https://www.campusvirtual.uniovi.es/course/view.php?id=1313   |
 
 ## Plataformas Java
 
-| Plataformas Java         | Características  |
-|--------------------------|------------------|
-| Java Standard Edition    | - Para applets <br> - VM <br> - Desarrollo y despliegue de aplicaciones Java en escritorios y servidores <br> - Interfaz de usuario rica, rendimiento, versatilidad, portabilidad y seguridad |
-| Java Enterprise Edition  | - Se apoya en SE <br> - Servlets <br> - JSP <br> - JSF <br> - Beans <br> - Estándar en software empresarial impulsado por la comunidad <br> - Desarrollo de aplicaciones distribuidas y servicios web |
-| Java Micro Edition       | - Proporciona un entorno robusto y flexible para aplicaciones en dispositivos móviles y empotrados <br> - Incluye perfiles para dispositivos móviles y televisores |
-| JavaFX Script            | - Lenguaje de scripting para JavaFX <br> - Desarrollo de interfaces de usuario ricas para aplicaciones de escritorio, móviles, TV y web |
+| Plataformas Java          | Características   |
+| -                         | -                 |
+| Java Standard Edition     | - Para applets    |
+|                           | - VM              |
+|                           | - Desarrollo y despliegue de aplicaciones Java en escritorios y servidores |
+|                           | - Interfaz de usuario rica, rendimiento, versatilidad, portabilidad y seguridad |
+| Java Enterprise Edition   | - Se apoya en SE 
+|                           | - Servlets, JSP, JSF, Beans
+|                           | - Estándar en software empresarial impulsado por la comunidad <br> - Desarrollo de aplicaciones distribuidas y servicios web |
+| Java Micro Edition        | - Proporciona un entorno robusto y flexible para aplicaciones en dispositivos móviles y empotrados
+|                           | - Incluye perfiles para dispositivos móviles y televisores |
+| JavaFX Script             | - Lenguaje de scripting para JavaFX <br> - Desarrollo de interfaces de usuario ricas para aplicaciones de escritorio, móviles, TV y web |
 
 # Tema 1 - JEE y Patrones
 
@@ -117,9 +129,56 @@ public class HolaMundoServlet extends HttpServlet {
 Java Server Pages es una tecnología para crear páginas web dinámicas. Estas páginas están construidas sobre servlets y vienen a resolver el problema de presentación de los mismos.
 Permiten generar HTML directamente por código.
 
-## Glosario
+## Introducción a Patrones
 
-| Término | Definición |
-|- | - |
-| URL | Unique Resource Locator. |
-| HTTP | HyperText Transfer Protocol. protocolo de aplicación utilizado para el intercambio de información en la Web mediante el paso de mensajes. |
+**Model-1.5**: JSPs para presentación y control, y JavaBeans para la lógica.
+![Model-1.5 diagram](image.png)
+
+**Model-2**: Model-View-Controller = JavaBeans-JSPs-Servlet
+
+![Model-2 diagram](image-1.png)
+
+**Modelo N-capas**: Modelo de Brown n-capas, contiene un patrón fachada entre capas, no permitiendo dependencias a través de estas. 
+![Model-layers diagram](image-2.png)
+Layers y Tiers:
+- Layer: capa arquitectónica (presentación, lógica, persistencia...)
+- Tier: capa física (servidor web, servidor de aplicaciones, servidor BBDD)
+
+![Ejemplo layers tiers](image-3.png)
+
+En la asignatura se usarán los siguientes patrones
+
+| Presentación  | Negocio   | Persistencia  |
+| -             | -         | -             |
+| MVC           | Fachada   | DAO           |
+|               | Factoría  | DTO           |
+|               |           | Factoría      |
+|               |           | Active Record |
+
+
+# Spring Boot
+
+Spring Boot aumenta la agilidad del desarrollo de aplciaciones en spring.
+- Provee opciones de configuración por defecto
+- uso opcional de POMS
+- Evita generación de código y configuraciones XML presentes en Spring
+
+## Framework Spring
+- Aplicaciones basadas en el patrón MVC
+- Soporte completo al desarrollo de ap,licaciones empresariales basadas en POJOs
+- Sistema de inyección de dependencias basadas en el IoC container (inversion of Control)
+  - Menor consumo de recursos que los EJB
+- Gran cantidad de módilos con funcionalidad reutilizable
+- Traducción de instrucciones específicas a genéricas
+
+## Maven
+Dominio: http://maven.apache.org
+- Permite especificar procesos para muchas acciones 
+relativas al desarrollo de software
+   Validaciones, compilación, despliegue, pruebas, etc.
+- Gestión de dependencias / artefactos (“superlibrerias”) 
+  
+SpringBoot utiliza Maven con ficheros POM
+
+
+
