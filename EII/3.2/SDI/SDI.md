@@ -1,30 +1,37 @@
+
 # SDI
 
+| Criterios de calificación | Porcentaje    |
+| -                         | -             |
+| Teoría                    | 40 %          |
+| Práctica                  | 60%           |
+
 Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo software avanzado, a través de técnicas clásicas y/o ágiles como pueden ser JEE, Spring Boot, Selenium, NodeJs o servicios REST/SOAP, a parte del uso de patrones de diseño en los que se profundizarán más adelante.
+
+| Información general sobre la asignatura                           |
+| -                                                                 |
+| CV: https://www.campusvirtual.uniovi.es/course/view.php?id=1313   |
 
 ## Tabla de contenidos
 - [SDI](#sdi)
   - [Tabla de contenidos](#tabla-de-contenidos)
-  - [Introducción](#introducción)
-    - [Información general de la asignatura](#información-general-de-la-asignatura)
-    - [Plataformas Java](#plataformas-java)
-  - [Tema 1: Introducción al desarrollo web - JEE y Patrones](#tema-1-introducción-al-desarrollo-web---jee-y-patrones)
-    - [Arquitectura Web Básica](#arquitectura-web-básica)
-    - [Servlets](#servlets)
-    - [Contenedor de servlets/Web container](#contenedor-de-servletsweb-container)
-    - [Ciclo de vida](#ciclo-de-vida)
-    - [Métodos doGet y doPost](#métodos-doget-y-dopost)
-    - [Registro de un servlet](#registro-de-un-servlet)
-    - [JSP](#jsp)
+  - [Plataformas Java](#plataformas-java)
+- [Tema 1 - JEE y Patrones](#tema-1---jee-y-patrones)
+  - [Arquitectura Web Básica](#arquitectura-web-básica)
+  - [Servlets](#servlets)
+  - [Contenedor de servlets/Web container](#contenedor-de-servletsweb-container)
+  - [Ciclo de vida](#ciclo-de-vida)
+  - [Métodos doGet y doPost](#métodos-doget-y-dopost)
+  - [Registro de un servlet](#registro-de-un-servlet)
+  - [JSP](#jsp)
   - [Tema 2: Arquitectura MVC con Spring Boot](#tema-2-arquitectura-mvc-con-spring-boot)
   - [Tema 3: Acceso a datos, Autenticación - Control de acceso - Validación en el servidor](#tema-3-acceso-a-datos-autenticación---control-de-acceso---validación-en-el-servidor)
     - [Patrones arquitectónicos y de diseños](#patrones-arquitectónicos-y-de-diseños)
       - [Tipos de patrones:](#tipos-de-patrones)
-      - [Arquitecturas en desuso:](#arquitecturas-en-desuso)
-      - [Otras arquitecturas:](#otras-arquitecturas)
-        - [N-Capas:](#n-capas)
-        - [Fachada:](#fachada)
-        - [Capas:](#capas)
+    - [Introducción a Patrones](#introducción-a-patrones)
+- [Spring Boot](#spring-boot)
+  - [Framework Spring](#framework-spring)
+  - [Maven](#maven)
   - [Tema 4: Sesión - Roles - Consultas - Búsqueda - Paginación](#tema-4-sesión---roles---consultas---búsqueda---paginación)
     - [Fragmentos](#fragmentos)
       - [Controladores](#controladores)
@@ -51,49 +58,47 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
   - [Tema 9: Servicios web SOAP](#tema-9-servicios-web-soap)
   - [Glosario](#glosario)
 
+## Plataformas Java
 
-## Introducción
+| Plataformas Java          | Características   |
+| -                         | -                 |
+| Java Standard Edition     | - Para applets    |
+|                           | - VM              |
+|                           | - Desarrollo y despliegue de aplicaciones Java en escritorios y servidores |
+|                           | - Interfaz de usuario rica, rendimiento, versatilidad, portabilidad y seguridad |
+| Java Enterprise Edition   | - Se apoya en SE 
+|                           | - Servlets, JSP, JSF, Beans
+|                           | - Estándar en software empresarial impulsado por la comunidad <br> - Desarrollo de aplicaciones distribuidas y servicios web |
+| Java Micro Edition        | - Proporciona un entorno robusto y flexible para aplicaciones en dispositivos móviles y empotrados
+|                           | - Incluye perfiles para dispositivos móviles y televisores |
+| JavaFX Script             | - Lenguaje de scripting para JavaFX <br> - Desarrollo de interfaces de usuario ricas para aplicaciones de escritorio, móviles, TV y web |
 
+# Tema 1 - JEE y Patrones
 
+## Arquitectura Web Básica
 
-### Información general de la asignatura
-| |   |
-|---|---|
-|  Versión de Java utilizada | 17  |
-
-### Plataformas Java
-
-| Plataformas Java         | Características  |
-|--------------------------|------------------|
-| Java Standard Edition    | - Para applets <br> - VM <br> - Desarrollo y despliegue de aplicaciones Java en escritorios y servidores <br> - Interfaz de usuario rica, rendimiento, versatilidad, portabilidad y seguridad |
-| Java Enterprise Edition  | - Se apoya en SE <br> - Servlets <br> - JSP <br> - JSF <br> - Beans <br> - Estándar en software empresarial impulsado por la comunidad <br> - Desarrollo de aplicaciones distribuidas y servicios web |
-| Java Micro Edition       | - Proporciona un entorno robusto y flexible para aplicaciones en dispositivos móviles y empotrados <br> - Incluye perfiles para dispositivos móviles y televisores |
-| JavaFX Script            | - Lenguaje de scripting para JavaFX <br> - Desarrollo de interfaces de usuario ricas para aplicaciones de escritorio, móviles, TV y web |
-
-## Tema 1: Introducción al desarrollo web - JEE y Patrones
-
-
-### Arquitectura Web Básica
 Un cliente (Navegador) envía una petición de un recurso (URL) a un servidor (Servidor HTTP) y éste le responde vía HTTP
 
 Cuando el navegador solicita una página web, recibe la página y desencadena una petición para cada uno de los
 recursos asociados a la misma.
 
-### Servlets
+## Servlets
 
 Un servlet es una clase Java que hereda de la clase JEE HTTPServlet y que:
-  - Acepta peticiones de cualquier método HTTP (get, post, put, delete, head, trace, …)
-  - Responde también usando el protocolo HTTP
-  - Se ejecuta dentro de un contenedor de Servlets que a su vez está dentro de un servidor de aplicaciones JEE
 
-### Contenedor de servlets/Web container
- - Un contenedor define un ambiente estandarizado de ejecución que provee servicios
+- Acepta peticiones de cualquier método HTTP (get, post, put, delete, head, trace, …)
+- Responde también usando el protocolo HTTP
+- Se ejecuta dentro de un contenedor de Servlets que a su vez está dentro de un servidor de aplicaciones JEE
+
+## Contenedor de servlets/Web container
+
+- Un contenedor define un ambiente estandarizado de ejecución que provee servicios
 específicos a los servlets. Por ejemplo, dan servicio a las peticiones de los clientes, realizando
 un procesamiento y devolviendo el resultado
- - Los servlets tienen que cumplir un contrato con el contenedor para obtener sus servicios.
- - Los contratos son interfaces Java.Por ejemplo, la interfaz Servlet.
+- Los servlets tienen que cumplir un contrato con el contenedor para obtener sus servicios.
+- Los contratos son interfaces Java.Por ejemplo, la interfaz Servlet.
 
-### Ciclo de vida
+## Ciclo de vida
 
 **INICIALIZACIÓN**: Una única llamada al metodo “init” por parte del contenedor de servlets
 public void init(ServletConfig config) throws ServletException. Se pueden recoger unos
@@ -104,7 +109,7 @@ peticiones se invocan en un nuevo hilo mapeado sobre service
 **DESTRUCCIÓN**: Cuando todas las llamadas desde el cliente cesen o un temporizador del
 servidor así lo indique. Se deben liberar recursos retenidos desde init() public void destroy()
 
-### Métodos doGet y doPost
+## Métodos doGet y doPost
 Son llamados desde el método service(). Reciben interfaces instanciada:
 
 ```java
@@ -118,7 +123,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 }
 ```
 
-### Registro de un servlet
+## Registro de un servlet
 
 **Opción 1**: Despliegue de web.xml
 ```xml
@@ -149,7 +154,7 @@ public class HolaMundoServlet extends HttpServlet {
 }
 ```
 
-### JSP
+## JSP
 
 Java Server Pages es una tecnología para crear páginas web dinámicas. Estas páginas están construidas sobre servlets y vienen a resolver el problema de presentación de los mismos.
 Permiten generar HTML directamente por código.
@@ -166,20 +171,55 @@ Permiten generar HTML directamente por código.
 - Diseño: Relacionados con el diseño de objetos y frameworks de pequeña y mediana escala. (Fachada)
 - Estilos: Soluciones de diseño de bajo nivel orientadas a la implementación o al lenguaje (Singleton)
 
-#### Arquitecturas en desuso:
-- Model-1.5
-- Model-2: Vista-Controlador = JavaBeans-JSPs-Servlets//TODO
+### Introducción a Patrones
 
-#### Otras arquitecturas:
-##### N-Capas:
-- Capas(layers) de presentación, negocio y persistencia.
-- Tiers: capas físicas de la arquitectura de despliegue del hardware:
-- Las capas se despliegan sobre las tiers.
+**Model-1.5**: JSPs para presentación y control, y JavaBeans para la lógica.
+![Model-1.5 diagram](image.png)
 
-##### Fachada:
+**Model-2**: Model-View-Controller = JavaBeans-JSPs-Servlet
 
+![Model-2 diagram](image-1.png)
 
-##### Capas:
+**Modelo N-capas**: Modelo de Brown n-capas, contiene un patrón fachada entre capas, no permitiendo dependencias a través de estas. 
+![Model-layers diagram](image-2.png)
+Layers y Tiers:
+- Layer: capa arquitectónica (presentación, lógica, persistencia...)
+- Tier: capa física (servidor web, servidor de aplicaciones, servidor BBDD)
+
+![Ejemplo layers tiers](image-3.png)
+
+En la asignatura se usarán los siguientes patrones
+
+| Presentación  | Negocio   | Persistencia  |
+| -             | -         | -             |
+| MVC           | Fachada   | DAO           |
+|               | Factoría  | DTO           |
+|               |           | Factoría      |
+|               |           | Active Record |
+
+# Spring Boot
+
+Spring Boot aumenta la agilidad del desarrollo de aplciaciones en spring.
+- Provee opciones de configuración por defecto
+- uso opcional de POMS
+- Evita generación de código y configuraciones XML presentes en Spring
+
+## Framework Spring
+- Aplicaciones basadas en el patrón MVC
+- Soporte completo al desarrollo de ap,licaciones empresariales basadas en POJOs
+- Sistema de inyección de dependencias basadas en el IoC container (inversion of Control)
+  - Menor consumo de recursos que los EJB
+- Gran cantidad de módilos con funcionalidad reutilizable
+- Traducción de instrucciones específicas a genéricas
+
+## Maven
+Dominio: http://maven.apache.org
+- Permite especificar procesos para muchas acciones 
+relativas al desarrollo de software
+   Validaciones, compilación, despliegue, pruebas, etc.
+- Gestión de dependencias / artefactos (“superlibrerias”) 
+  
+SpringBoot utiliza Maven con ficheros POM
 
 
 ## Tema 4: Sesión - Roles - Consultas - Búsqueda - Paginación
@@ -270,3 +310,10 @@ Permiten generar HTML directamente por código.
 | Spring  | Framework basado en JEE que usa el patrón MVC para el desarrollo de aplicaciones  web. Usa un modelo POJO
 | POJO    | Modelo basado en clases planas sin herencia de otras 
 | Interceptores | Servlets que ...
+
+
+
+
+
+
+
