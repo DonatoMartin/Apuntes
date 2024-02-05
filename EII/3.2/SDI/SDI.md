@@ -16,22 +16,21 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
 - [SDI](#sdi)
   - [Tabla de contenidos](#tabla-de-contenidos)
   - [Plataformas Java](#plataformas-java)
-- [Tema 1 - JEE y Patrones](#tema-1---jee-y-patrones)
-  - [Arquitectura Web Básica](#arquitectura-web-básica)
-  - [Servlets](#servlets)
-  - [Contenedor de servlets/Web container](#contenedor-de-servletsweb-container)
-  - [Ciclo de vida](#ciclo-de-vida)
-  - [Métodos doGet y doPost](#métodos-doget-y-dopost)
-  - [Registro de un servlet](#registro-de-un-servlet)
-  - [JSP](#jsp)
+  - [Tema 1 - JEE y Patrones](#tema-1---jee-y-patrones)
+    - [Arquitectura Web Básica](#arquitectura-web-básica)
+    - [Servlets](#servlets)
+    - [Contenedor de servlets/Web container](#contenedor-de-servletsweb-container)
+    - [Ciclo de vida](#ciclo-de-vida)
+    - [Métodos doGet y doPost](#métodos-doget-y-dopost)
+    - [Registro de un servlet](#registro-de-un-servlet)
+    - [JSP](#jsp)
   - [Tema 2: Arquitectura MVC con Spring Boot](#tema-2-arquitectura-mvc-con-spring-boot)
   - [Tema 3: Acceso a datos, Autenticación - Control de acceso - Validación en el servidor](#tema-3-acceso-a-datos-autenticación---control-de-acceso---validación-en-el-servidor)
-    - [Patrones arquitectónicos y de diseños](#patrones-arquitectónicos-y-de-diseños)
       - [Tipos de patrones:](#tipos-de-patrones)
     - [Introducción a Patrones](#introducción-a-patrones)
-- [Spring Boot](#spring-boot)
-  - [Framework Spring](#framework-spring)
-  - [Maven](#maven)
+    - [Spring Boot](#spring-boot)
+      - [Framework Spring](#framework-spring)
+      - [Maven](#maven)
   - [Tema 4: Sesión - Roles - Consultas - Búsqueda - Paginación](#tema-4-sesión---roles---consultas---búsqueda---paginación)
     - [Fragmentos](#fragmentos)
       - [Controladores](#controladores)
@@ -73,16 +72,16 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
 |                           | - Incluye perfiles para dispositivos móviles y televisores |
 | JavaFX Script             | - Lenguaje de scripting para JavaFX <br> - Desarrollo de interfaces de usuario ricas para aplicaciones de escritorio, móviles, TV y web |
 
-# Tema 1 - JEE y Patrones
+## Tema 1 - JEE y Patrones
 
-## Arquitectura Web Básica
+### Arquitectura Web Básica
 
 Un cliente (Navegador) envía una petición de un recurso (URL) a un servidor (Servidor HTTP) y éste le responde vía HTTP
 
 Cuando el navegador solicita una página web, recibe la página y desencadena una petición para cada uno de los
 recursos asociados a la misma.
 
-## Servlets
+### Servlets
 
 Un servlet es una clase Java que hereda de la clase JEE HTTPServlet y que:
 
@@ -90,7 +89,7 @@ Un servlet es una clase Java que hereda de la clase JEE HTTPServlet y que:
 - Responde también usando el protocolo HTTP
 - Se ejecuta dentro de un contenedor de Servlets que a su vez está dentro de un servidor de aplicaciones JEE
 
-## Contenedor de servlets/Web container
+### Contenedor de servlets/Web container
 
 - Un contenedor define un ambiente estandarizado de ejecución que provee servicios
 específicos a los servlets. Por ejemplo, dan servicio a las peticiones de los clientes, realizando
@@ -98,7 +97,7 @@ un procesamiento y devolviendo el resultado
 - Los servlets tienen que cumplir un contrato con el contenedor para obtener sus servicios.
 - Los contratos son interfaces Java.Por ejemplo, la interfaz Servlet.
 
-## Ciclo de vida
+### Ciclo de vida
 
 **INICIALIZACIÓN**: Una única llamada al metodo “init” por parte del contenedor de servlets
 public void init(ServletConfig config) throws ServletException. Se pueden recoger unos
@@ -109,7 +108,7 @@ peticiones se invocan en un nuevo hilo mapeado sobre service
 **DESTRUCCIÓN**: Cuando todas las llamadas desde el cliente cesen o un temporizador del
 servidor así lo indique. Se deben liberar recursos retenidos desde init() public void destroy()
 
-## Métodos doGet y doPost
+### Métodos doGet y doPost
 Son llamados desde el método service(). Reciben interfaces instanciada:
 
 ```java
@@ -123,7 +122,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 }
 ```
 
-## Registro de un servlet
+### Registro de un servlet
 
 **Opción 1**: Despliegue de web.xml
 ```xml
@@ -154,7 +153,7 @@ public class HolaMundoServlet extends HttpServlet {
 }
 ```
 
-## JSP
+### JSP
 
 Java Server Pages es una tecnología para crear páginas web dinámicas. Estas páginas están construidas sobre servlets y vienen a resolver el problema de presentación de los mismos.
 Permiten generar HTML directamente por código.
@@ -163,8 +162,6 @@ Permiten generar HTML directamente por código.
 - Spring Boot: es una forma fácil de desarrollar aplicaciones en Spring.
 
 ## Tema 3: Acceso a datos, Autenticación - Control de acceso - Validación en el servidor
-
-### Patrones arquitectónicos y de diseños
 
 #### Tipos de patrones:
 - Arquitectónicos: Relacionados con el diseño a gran escala y de granularidad gruesa. (Capas)
@@ -197,14 +194,14 @@ En la asignatura se usarán los siguientes patrones
 |               |           | Factoría      |
 |               |           | Active Record |
 
-# Spring Boot
+### Spring Boot
 
 Spring Boot aumenta la agilidad del desarrollo de aplciaciones en spring.
 - Provee opciones de configuración por defecto
 - uso opcional de POMS
 - Evita generación de código y configuraciones XML presentes en Spring
 
-## Framework Spring
+#### Framework Spring
 - Aplicaciones basadas en el patrón MVC
 - Soporte completo al desarrollo de ap,licaciones empresariales basadas en POJOs
 - Sistema de inyección de dependencias basadas en el IoC container (inversion of Control)
@@ -212,7 +209,7 @@ Spring Boot aumenta la agilidad del desarrollo de aplciaciones en spring.
 - Gran cantidad de módilos con funcionalidad reutilizable
 - Traducción de instrucciones específicas a genéricas
 
-## Maven
+#### Maven
 Dominio: http://maven.apache.org
 - Permite especificar procesos para muchas acciones 
 relativas al desarrollo de software
