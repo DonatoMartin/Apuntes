@@ -26,6 +26,24 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
         - [Fachada:](#fachada)
         - [Capas:](#capas)
   - [Tema 4: Sesión - Roles - Consultas - Búsqueda - Paginación](#tema-4-sesión---roles---consultas---búsqueda---paginación)
+    - [Fragmentos](#fragmentos)
+      - [Controladores](#controladores)
+      - [Cliente](#cliente)
+    - [Configuración](#configuración)
+      - [@Configuration](#configuration)
+      - [@Bean](#bean)
+    - [Internacionalización(i18n)](#internacionalizacióni18n)
+      - [Configuración](#configuración-1)
+      - [Interceptores](#interceptores)
+        - [LocaleChangeInterceptor](#localechangeinterceptor)
+      - [LocaleResolver](#localeresolver)
+      - [Mensajes](#mensajes)
+    - [Spring Security](#spring-security)
+      - [Autenticación](#autenticación)
+      - [Encriptación](#encriptación)
+      - [Configuración //TODO](#configuración-todo)
+      - [Autorización (HTTPSecurity)](#autorización-httpsecurity)
+      - [](#)
   - [Tema 5: Web testing con Selenium](#tema-5-web-testing-con-selenium)
   - [Tema 6: Desarrollo web con Nodejs 1](#tema-6-desarrollo-web-con-nodejs-1)
   - [Tema 7: Desarrollo web con Nodejs 2](#tema-7-desarrollo-web-con-nodejs-2)
@@ -165,6 +183,78 @@ Permiten generar HTML directamente por código.
 
 
 ## Tema 4: Sesión - Roles - Consultas - Búsqueda - Paginación
+
+### Fragmentos
+- El uso por defecto de Thymeleaf consiste en retornar una vista correspondiente a una plantilla
+
+- Para ganar fluidez y eficiencia en ocasiones no se retorna una plantilla/página completa
+- Una alternativa es retornar una/varias partes de fragmentos de la plantilla/página
+
+- Se suele dar un id al fragmento
+
+#### Controladores
+- Referencian frangmentos con \<ruta plantilla> :: \<nombre fragmento>
+
+#### Cliente
+- Con JQuery: $(\<selector>).load(\<url>)
+
+### Configuración
+
+#### @Configuration
+- No sé
+
+#### @Bean
+- Muchas implementan Beans.
+- Definen:
+  - Funcionalidad necesaria para la propia configuración
+  - Funcionalidad común que será utilizada en otras partes de la aplicación
+- Se registran al iniciar la aplicación
+
+### Internacionalización(i18n)
+
+#### Configuración
+- Hacemos uso de **WebMvcConfigurerAdapter**, una de las clases más genéricas de configuración para añadir **interceptores**
+
+#### Interceptores
+- Servlets que ...
+- Suelen(o igual siempre) heredar de un interceptor básico(**HandlerInterceptorAdapter**).
+- Retornan un Bean.
+- El Bean se registra a través del método **addInterceptors()** 
+  
+##### LocaleChangeInterceptor
+- **LocaleChangeInterceptor** es un interceptor *implementado en el framework* relativo a la internacionalización.
+  
+#### LocaleResolver
+- Es un objeto del framework que permite hacer cambios automáticos de idioma.
+- Basado en sesiones, cookies y ... accept-language
+  
+#### Mensajes
+- Las cadenas de texto internacionalizadas se definen en ficheros de propiedades(.properties)
+- Desde **Thymeleaf** usamos las claves para obtener los mensajes.
+
+### Spring Security
+#### Autenticación
+- Proceso para validar la identidad del usuario
+- Dependencia **spring-boot-starter-security**
+
+#### Encriptación
+- **BCryptPasswordEncoder** soporta la encriptación de forma ágil
+  - Puede usarse como un bean
+
+#### Configuración //TODO
+
+#### Autorización (HTTPSecurity)
+- Sobreesceibimos el método **configure(HttpSecurity http)**
+- Permite configurar ...
+- 
+
+####
+
+
+
+
+
+
 ## Tema 5: Web testing con Selenium
 ## Tema 6: Desarrollo web con Nodejs 1
 ## Tema 7: Desarrollo web con Nodejs 2
@@ -179,3 +269,4 @@ Permiten generar HTML directamente por código.
 | Patrón  | 
 | Spring  | Framework basado en JEE que usa el patrón MVC para el desarrollo de aplicaciones  web. Usa un modelo POJO
 | POJO    | Modelo basado en clases planas sin herencia de otras 
+| Interceptores | Servlets que ...
