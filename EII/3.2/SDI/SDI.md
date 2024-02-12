@@ -49,9 +49,25 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
       - [Encriptación](#encriptación)
       - [Configuración //TODO](#configuración-todo)
       - [Autorización (HTTPSecurity)](#autorización-httpsecurity)
-      - [](#)
+      - [Paginación](#paginación)
   - [Tema 5: Web testing con Selenium](#tema-5-web-testing-con-selenium)
   - [Tema 6: Desarrollo web con Nodejs 1](#tema-6-desarrollo-web-con-nodejs-1)
+    - [Sesión](#sesión)
+      - [HttpSession](#httpsession)
+      - [Thymeleaf](#thymeleaf)
+      - [Beans](#beans)
+    - [Datos y acciones sensible](#datos-y-acciones-sensible)
+      - [Implementación](#implementación)
+      - [DecisionManager](#decisionmanager)
+      - [AccessDecision](#accessdecision)
+    - [Paginación](#paginación-1)
+      - [Page](#page)
+      - [Controles](#controles)
+      - [Configuración](#configuración-2)
+    - [Transacciones](#transacciones)
+    - [Logging](#logging)
+      - [Logger](#logger)
+    - [Subida de ficheros](#subida-de-ficheros)
   - [Tema 7: Desarrollo web con Nodejs 2](#tema-7-desarrollo-web-con-nodejs-2)
   - [Tema 8: Servicios web REST](#tema-8-servicios-web-rest)
   - [Tema 9: Servicios web SOAP](#tema-9-servicios-web-soap)
@@ -285,7 +301,9 @@ SpringBoot utiliza Maven con ficheros POM
 - Permite configurar ...
 - 
 
-####
+#### Paginación
+- Cargar muchos elementos en una misma página es costoso y perjudica la experiencia de usuario
+- 
 
 
 
@@ -294,6 +312,60 @@ SpringBoot utiliza Maven con ficheros POM
 
 ## Tema 5: Web testing con Selenium
 ## Tema 6: Desarrollo web con Nodejs 1
+
+### Sesión
+- La aplicación crea una sesión para cada nuevo cliente
+- Se identifica con una ID, la cual se envía en una cookie
+- Puede almacenar/recuperar datos de las sesiones
+- Se destruyen automáticamente tran un tiempo de inactividad, también pueden destruirse por código
+  
+#### HttpSession
+- Permite acceder a la sesión
+- Funciona como una tabla Hash
+
+#### Thymeleaf
+- Las plantillas pueden acceder a la sesión
+
+#### Beans
+- Por defecto se gestionan como Singleton.
+- Con @SessionScope se puede modificar
+
+
+### Datos y acciones sensible
+- Las aplicaciones web suelenn ser multiusuario y de acceso público
+- Problema de exposición de datos sensibles
+  
+#### Implementación
+- URLs con datos/acciones sensibles solo pueden ser utilizadas por cierto usuarios
+
+#### DecisionManager
+- Especialmente útil cuando las peticiones no pasan por un controlador
+- WebSecurityConfigurerAdapter declara diferentes políticas de acceso
+
+#### AccessDecision
+
+### Paginación
+- Cargar muchos elementos en una misma página es costoso y perjudica la experiencia de usuario
+
+#### Page<E>
+- Objeto del sistema de paginación
+- Similar a una List, pero incluye más información relativa a la paginación	
+- Los repositorios retornarán este objeto
+- Deben recibir un parametro adicional **Pageable**
+
+#### Controles
+
+#### Configuración
+
+### Transacciones
+
+### Logging
+
+#### Logger
+
+### Subida de ficheros
+
+
 ## Tema 7: Desarrollo web con Nodejs 2
 ## Tema 8: Servicios web REST
 ## Tema 9: Servicios web SOAP
