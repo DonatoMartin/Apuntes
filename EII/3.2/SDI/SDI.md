@@ -15,6 +15,7 @@
 - [Spring Boot](#spring-boot)
   - [Framework Spring](#framework-spring)
   - [Maven](#maven)
+  - [Familias de errores http](#familias-de-errores-http)
 
 
 | Criterios de calificación | Porcentaje    |
@@ -27,6 +28,25 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
 | Información general sobre la asignatura                           |
 | -                                                                 |
 | CV: https://www.campusvirtual.uniovi.es/course/view.php?id=1313   |
+
+En la sesión de presentación del laboratorio, se destacan las siguientes anotaciones importantes:
+- Habrá COMMITS semanales a realizar con un id de usuario asignado en el CV
+- Habrá ejercicios complementarios en el aula de prácticas
+- Se requiere un equipo de 3 a 5 personas para el trabajo en grupo
+- Se harán varios repositorios a lo largo de esta asignatura:
+  - sdi-2324-509-lab-y.git (jee, spring, nodejs)
+  - sdi-2324-509-entrega-sdi1.git (spring)
+  - sdi-2324-509-entrega-sdi2.git (node.Js + servicios web)
+- Cada repo lab incluirá una etiqueta al realizar cada práctica (ej. “sdi-spring-p1")
+- Agregar como colaborador para cada repo a “sdigithubuniovi”
+
+Requisitos para eludir la prueba de autoría:
+- Mínima de 4 parcial de teoría
+- Mínima de 5 nota individual de las entregas prácticas
+- 90% de los commits a tiempo
+- Realizar el 50% de los ejercicios adicionales de clase
+
+Revisar 00 SDI-Presentación.pdf para más información.
 
 ## Plataformas Java
 
@@ -132,19 +152,19 @@ Permiten generar HTML directamente por código.
 ## Introducción a Patrones
 
 **Model-1.5**: JSPs para presentación y control, y JavaBeans para la lógica.
-![Model-1.5 diagram](image.png)
+![Model-1.5 diagram](diagram-model-1.5.png)
 
 **Model-2**: Model-View-Controller = JavaBeans-JSPs-Servlet
 
-![Model-2 diagram](image-1.png)
+![Model-2 diagram](diagram-model-2.png)
 
 **Modelo N-capas**: Modelo de Brown n-capas, contiene un patrón fachada entre capas, no permitiendo dependencias a través de estas. 
-![Model-layers diagram](image-2.png)
+![Model-layers diagram](diagram-model-layers.png)
 Layers y Tiers:
 - Layer: capa arquitectónica (presentación, lógica, persistencia...)
 - Tier: capa física (servidor web, servidor de aplicaciones, servidor BBDD)
 
-![Ejemplo layers tiers](image-3.png)
+![Ejemplo layers tiers](diagram-model-example-layers-tiers.png)
 
 En la asignatura se usarán los siguientes patrones
 
@@ -181,4 +201,10 @@ relativas al desarrollo de software
 SpringBoot utiliza Maven con ficheros POM
 
 
+## Familias de errores http
 
+1xx Respuestas informativas 
+2xx Respuestas exitosas -> OK
+3xx Redirecciones (301 Moved Permanently)
+4xx Errores del cliente
+5xx Errores del servidor
