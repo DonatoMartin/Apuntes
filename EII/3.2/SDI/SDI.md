@@ -88,6 +88,8 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
     - [Subida de ficheros](#subida-de-ficheros)
       - [Procesamiento](#procesamiento)
   - [Tema 5: Web testing con Selenium](#tema-5-web-testing-con-selenium)
+    - [Tipos de tests:](#tipos-de-tests)
+    - [JUnit vs TestNG](#junit-vs-testng)
   - [Tema 6: Desarrollo web con Nodejs 1](#tema-6-desarrollo-web-con-nodejs-1)
   - [Tema 7: Desarrollo web con Nodejs 2](#tema-7-desarrollo-web-con-nodejs-2)
   - [Tema 8: Servicios web REST](#tema-8-servicios-web-rest)
@@ -268,7 +270,7 @@ SpringBoot utiliza Maven con ficheros POM
 - **@ModelAttribute**:
   - Construye automáticamente un objeto en base a los parámetros recibidos
   - La clase utilizada debe definir:
-    - Constructor si parámetros
+    - Constructor sin parámetros
     - Getters para los atributos
   - Se completan los atributos en los que haya coincidencia de nombres
 - **@ResponseBody**
@@ -593,17 +595,25 @@ otros objetos.
   - Se puede utilizar el tipo **MultipartFile**
 
 ## Tema 5: Web testing con Selenium
-- Tipos de tests:
-  - Funcional: Prueba de todos los enlaces web, conexiones, envío de datos...
-  - Usabilidad: Miden características de la interacción computador-máquina.
-  - Interface: Conexiones entre servidores.
-  - Compatibilidad: En navegadores, SSOO, móviles...
-  - Rendimiento:
-    - Pruebas de carga: volumen de usuarios/conexiones, datos, conexiones...
-    - Pruebas de estrés: Exponer al sistema a valores límite de demanda de recursos.
-  - Seguridad:
-    - Uso de URLs sin identificarse, con otros roles, ...
+### Tipos de tests:
+- Funcional: Prueba de todos los enlaces web, conexiones, envío de datos...
+- Usabilidad: Miden características de la interacción computador-máquina.
+- Interface: Conexiones entre servidores.
+- Compatibilidad: En navegadores, SSOO, móviles...
+- Rendimiento:
+  - Pruebas de carga: volumen de usuarios/conexiones, datos, conexiones...
+  - Pruebas de estrés: Exponer al sistema a valores límite de demanda de recursos.
+- Seguridad:
+  - Uso de URLs sin identificarse, con otros roles, ...
   
+### JUnit vs TestNG
+- Similitudes:
+  - OpenSource • TestNG fue inspirado en Junit • Son las librerías de testing más populares (ambas en el top 20).
+  - Junit presente en el 62% de los proyectos Java y TestNG en el 6%.
+- Diferencias:
+  - JUnit: Más es más maduro y presenta una comunidad mucho mayor. 
+  - TestNG: Más potente.
+
 ## Tema 6: Desarrollo web con Nodejs 1
 
 ## Tema 7: Desarrollo web con Nodejs 2
