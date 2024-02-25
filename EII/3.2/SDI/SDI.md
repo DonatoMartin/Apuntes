@@ -24,13 +24,24 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
     - [Métodos doGet y doPost](#métodos-doget-y-dopost)
     - [Registro de un servlet](#registro-de-un-servlet)
     - [JSP](#jsp)
+      - [Acción useBean](#acción-usebean)
   - [Tema 2: Arquitectura MVC con Spring Boot](#tema-2-arquitectura-mvc-con-spring-boot)
-  - [Tema 3: Acceso a datos, Autenticación - Control de acceso - Validación en el servidor](#tema-3-acceso-a-datos-autenticación---control-de-acceso---validación-en-el-servidor)
-      - [Tipos de patrones:](#tipos-de-patrones)
-    - [Introducción a Patrones](#introducción-a-patrones)
     - [Spring Boot](#spring-boot)
       - [Framework Spring](#framework-spring)
       - [Maven](#maven)
+      - [Anotaciones importantes:](#anotaciones-importantes)
+    - [Aplicación](#aplicación)
+      - [Propiedades](#propiedades)
+      - [Elementos principales](#elementos-principales)
+    - [Thymeleaf](#thymeleaf)
+  - [URLs.](#urls)
+  - [Tema 3: Acceso a datos, Autenticación - Control de acceso - Validación en el servidor](#tema-3-acceso-a-datos-autenticación---control-de-acceso---validación-en-el-servidor)
+    - [Tipos de patrones:](#tipos-de-patrones)
+    - [Introducción a Patrones](#introducción-a-patrones)
+      - [Fachada](#fachada)
+      - [DTO (Data Transfer Object)](#dto-data-transfer-object)
+      - [DAO (Data Access Object)](#dao-data-access-object)
+      - [Factoría](#factoría)
   - [Tema 4: Sesión - Roles - Consultas - Búsqueda - Paginación](#tema-4-sesión---roles---consultas---búsqueda---paginación)
     - [Fragmentos](#fragmentos)
       - [Controladores](#controladores)
@@ -54,7 +65,7 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
   - [Tema 6: Desarrollo web con Nodejs 1](#tema-6-desarrollo-web-con-nodejs-1)
     - [Sesión](#sesión)
       - [HttpSession](#httpsession)
-      - [Thymeleaf](#thymeleaf)
+      - [Thymeleaf](#thymeleaf-1)
       - [Beans](#beans)
     - [Datos y acciones sensible](#datos-y-acciones-sensible)
       - [Implementación](#implementación)
@@ -104,6 +115,8 @@ Un servlet es una clase Java que hereda de la clase JEE HTTPServlet y que:
 - Acepta peticiones de cualquier método HTTP (get, post, put, delete, head, trace, …)
 - Responde también usando el protocolo HTTP
 - Se ejecuta dentro de un contenedor de Servlets que a su vez está dentro de un servidor de aplicaciones JEE
+- Se trata de un saco “común” a todas las sesiones de usuario 
+activas en el servidor
 
 ### Contenedor de servlets/Web container
 
@@ -128,6 +141,10 @@ servidor así lo indique. Se deben liberar recursos retenidos desde init() publi
 Son llamados desde el método service(). Reciben interfaces instanciada:
 
 ```java
+/*
+ * @param req canal de entrada
+ * @param resp canal de salida
+ */
 protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
     throws ServletException, IOException {
         . . .
@@ -137,6 +154,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp)
         . . .
 }
 ```
+doGet no cambia el estado, mientras que doPost sí.
 
 ### Registro de un servlet
 
@@ -172,14 +190,136 @@ public class HolaMundoServlet extends HttpServlet {
 ### JSP
 
 Java Server Pages es una tecnología para crear páginas web dinámicas. Estas páginas están construidas sobre servlets y vienen a resolver el problema de presentación de los mismos.
-Permiten generar HTML directamente por código.
+Permiten generar HTML directamente por código, siendo más adecuados que los Servlets para presentación.
+
+- Tipos de elementos en JSP
+  - Scripting: Permiten insertar código java que será ejecutado en el momento de la petición
+  - Directivas: Permiten especificar información acerca de la página que permanece constante para todas las peticiones(por ejemplo imports: <% page import=""java.util.Date %>)
+  - Acciones: Permiten ejecutar determinadas acciones sobre información que se requiere en el momento de la petición de la JSP(por ejemplo: <jsp: useBean>)
+
+#### Acción useBean
+- id
+- class: omitible si se proporciona type y beanName
+- scope: 4 posibles(de mayor a menor duración)
+  - application
+  - session
+  - request
+  - page
+- type: tipo de la variable a la que se referirá el objeto
+- beanName
 
 ## Tema 2: Arquitectura MVC con Spring Boot
 - Spring Boot: es una forma fácil de desarrollar aplicaciones en Spring.
 
+### Spring Boot
+
+Spring Boot aumenta la agilidad del desarrollo de aplciaciones en spring.
+- Provee opciones de configuración por defecto
+- uso opcional de POMS
+- Evita generación de código y configuraciones XML presentes en Spring
+
+#### Framework Spring
+- Aplicaciones basadas en el patrón MVC
+- Soporte completo al desarrollo de ap,licaciones empresariales basadas en POJOs
+- Sistema de inyección de dependencias basadas en el IoC container (inversion of Control)
+  - Menor consumo de recursos que los EJB
+- Gran cantidad de módilos con funcionalidad reutilizable
+- Traducción de instrucciones específicas a genéricas
+
+#### Maven
+Dominio: http://maven.apache.org
+- Permite especificar procesos para muchas acciones 
+relativas al desarrollo de software
+   Validaciones, compilación, despliegue, pruebas, etc.
+- Gestión de dependencias / artefactos (“superlibrerias”) 
+  
+SpringBoot utiliza Maven con ficheros POM
+
+#### Anotaciones importantes:
+- **@SpringBootAplication**: 
+  - Se pone en la clase principal
+  - Fusiona tres anotaciones:
+    - **@Configuration**: puede definir elementos de configuración
+    - **@EnableAutoConfiguration**: habilita auto-configuración
+      - El atributo exclude permite excluir partes de la autoconfiguración y que dicha parte no sea aplicada.
+    - **@ComponentScan**: se escanea la aplicación en busca de componentes implementados
+      - Al detectar esos componentes los registra como Beans
+- **@RequestMaping**
+  - Usado en métodos de controladores
+  - Indica que un método responderá a peticiones
+  - value: especifica la URL
+  - method: especifica el tipo de petición HTTP
+    - RequestMethod.GET (por defecto)
+    - RequestMethos.POST
+- **@RequestParam**
+  - Usado para añadir parámetros (por defecto obligatorios) a las peticiones 
+  - Con el atributo required = false, se pueden hacer opcionales
+  - Con el atributo value se puede poner un valor por defecto
+- **@ModelAttribute**:
+  - Construye automáticamente un objeto en base a los parámetros recibidos
+  - La clase utilizada debe definir:
+    - Constructor si parámetros
+    - Getters para los atributos
+  - Se completan los atributos en los que haya coincidencia de nombres
+- **@ResponseBody**
+  - Hace que una respuesta sea un objeto, en lugar de una plantilla
+  - Comúnmente usado en pruebas
+- **@RestController**
+  - Controlador específico que añade **@ResponseBody** a todos sus métodos
+  - Comúnmente usado en pruebas
+- **@Autowired**
+  - Usada en atributos
+  - Permite inyectar una dependencia, sin necesidad de configuración adicional
+  - Es una alternativa a instanciar un objeto
+- **@PostConstruct**
+  - Especifica que un método se ejecutará una vez construido el componente
+- **@PreDestroy**
+  - Permite especificar que un método se ejecutará justo antes de destruir el componente
+- **@Qualifier**
+  - Permite inyectar una implementación de una interfaz junto con **@Autowired**
+- **@RequestScope**
+  - Ámbito por cada petición HTTP
+- **@SessionScope** 
+  - Ámbito cada sesión HTTP / cliente/navegador.
+- **@Scope("prototype")** 
+  - Ámbito por cada clase en la que se inyecta el componente
+
+### Aplicación
+#### Propiedades
+- El fichero **application.properties** permite modificar las propiedades por defecto / definir nuevas
+- También pueden definirse con:
+  - Clases, al inicial la aplicación
+  - Anotaciones específicas
+  - **application.yml**
+  - Parámetros en línea de comandos al ejecutar la aplicación
+
+#### Elementos principales
+- Componentes(**@Component**): Se procesan internamente como Beans
+  - Controladores (**@Controller**)
+    - Procesan peticiones realizadas por clientes
+    - Pueden invocar a la lógica de negocio (servicios) y generar una respuesta
+    - Retornan la ruta para localizar una plantilla
+  - Servicios(**@Service**)
+    - Capa de lógica de negocio (business)
+    - Suelen acceder a repositorios
+    - Ámbito Singleton por defecto
+  - Repositorios(**@Repository**)
+    - Acceden a bases de datos
+    - Se suelen inyectar con **@Autowired**
+  - Configuraciones(**@Configuration**)
+- Entidades: Clases que representan las entidades con las que trabaja la aplicación.
+- Vistas: Documentos que pueden ser utilizados para componer respuestas de forma más sencilla o eficiente.
+
+### Thymeleaf
+- Las plantillas se almacenan por defecto en la carpeta **/templates**
+- La plantilla tiene acceso a los atributos del modelo
+- El operador @ ofrece funcionalidad para gestión de parámetros en 
+URLs.
+- 
+
 ## Tema 3: Acceso a datos, Autenticación - Control de acceso - Validación en el servidor
 
-#### Tipos de patrones:
+### Tipos de patrones:
 - Arquitectónicos: Relacionados con el diseño a gran escala y de granularidad gruesa. (Capas)
 - Diseño: Relacionados con el diseño de objetos y frameworks de pequeña y mediana escala. (Fachada)
 - Estilos: Soluciones de diseño de bajo nivel orientadas a la implementación o al lenguaje (Singleton)
@@ -210,29 +350,21 @@ En la asignatura se usarán los siguientes patrones
 |               |           | Factoría      |
 |               |           | Active Record |
 
-### Spring Boot
+#### Fachada
+- Interfaz único y simplificado de los servicios más generales de un subsistema.
+![Ejemplo Fachada](Fachada.png)
 
-Spring Boot aumenta la agilidad del desarrollo de aplciaciones en spring.
-- Provee opciones de configuración por defecto
-- uso opcional de POMS
-- Evita generación de código y configuraciones XML presentes en Spring
+#### DTO (Data Transfer Object)
+- Utilizado para transferir datos entre subsistemas
+- Se utilizan a menudo en combinación con objetos DAO (persistencia) para obtener datos de una base de datos
 
-#### Framework Spring
-- Aplicaciones basadas en el patrón MVC
-- Soporte completo al desarrollo de ap,licaciones empresariales basadas en POJOs
-- Sistema de inyección de dependencias basadas en el IoC container (inversion of Control)
-  - Menor consumo de recursos que los EJB
-- Gran cantidad de módilos con funcionalidad reutilizable
-- Traducción de instrucciones específicas a genéricas
+#### DAO (Data Access Object)
+- Ofrece operaciones CRUD para cada objeto persistente del dominio
 
-#### Maven
-Dominio: http://maven.apache.org
-- Permite especificar procesos para muchas acciones 
-relativas al desarrollo de software
-   Validaciones, compilación, despliegue, pruebas, etc.
-- Gestión de dependencias / artefactos (“superlibrerias”) 
-  
-SpringBoot utiliza Maven con ficheros POM
+#### Factoría
+- Una factoría es un objeto encargado de la creación de 
+otros objetos.
+- El cliente no conoce el tipo concreto del objeto a crear.
 
 
 ## Tema 4: Sesión - Roles - Consultas - Búsqueda - Paginación
@@ -306,11 +438,21 @@ SpringBoot utiliza Maven con ficheros POM
 - 
 
 
-
-
-
-
 ## Tema 5: Web testing con Selenium
+- Tipos de tests:
+  - Funcional: Prueba de todos los enlaces web, conexiones, envío de datos...
+  - Usabilidad: Miden características de la interacción computador-máquina.
+  - Interface: Conexiones entre servidores.
+  - Compatibilidad: En navegadores, SSOO, móviles...
+  - Rendimiento:
+    - Pruebas de carga: volumen de usuarios/conexiones, datos, conexiones...
+    - Pruebas de estrés: Exponer al sistema a valores límite de demanda de recursos.
+  - Seguridad:
+    - Uso de URLs sin identificarse, con otros roles, ...
+  
+  
+
+
 ## Tema 6: Desarrollo web con Nodejs 1
 
 ### Sesión
@@ -367,6 +509,8 @@ SpringBoot utiliza Maven con ficheros POM
 
 
 ## Tema 7: Desarrollo web con Nodejs 2
+
+
 ## Tema 8: Servicios web REST
 ## Tema 9: Servicios web SOAP
 ## Glosario
