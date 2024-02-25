@@ -352,6 +352,7 @@ En la asignatura se usarán los siguientes patrones
 
 #### Fachada
 - Interfaz único y simplificado de los servicios más generales de un subsistema.
+
 ![Ejemplo Fachada](Fachada.png)
 
 #### DTO (Data Transfer Object)
