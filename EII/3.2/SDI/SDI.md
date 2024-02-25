@@ -34,7 +34,6 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
       - [Propiedades](#propiedades)
       - [Elementos principales](#elementos-principales)
     - [Thymeleaf](#thymeleaf)
-  - [URLs.](#urls)
   - [Tema 3: Acceso a datos, Autenticación - Control de acceso - Validación en el servidor](#tema-3-acceso-a-datos-autenticación---control-de-acceso---validación-en-el-servidor)
     - [Tipos de patrones:](#tipos-de-patrones)
     - [Introducción a Patrones](#introducción-a-patrones)
@@ -326,8 +325,7 @@ SpringBoot utiliza Maven con ficheros POM
 - Las plantillas se almacenan por defecto en la carpeta **/templates**
 - La plantilla tiene acceso a los atributos del modelo
 - El operador @ ofrece funcionalidad para gestión de parámetros en 
-URLs.
-- 
+URLs. 
 
 ## Tema 3: Acceso a datos, Autenticación - Control de acceso - Validación en el servidor
 
@@ -339,6 +337,7 @@ URLs.
 ### Introducción a Patrones
 
 **Model-1.5**: JSPs para presentación y control, y JavaBeans para la lógica.
+
 ![Model-1.5 diagram](image.png)
 
 **Model-2**: Model-View-Controller = JavaBeans-JSPs-Servlet
@@ -452,7 +451,7 @@ otros objetos.
 - Permite configurar el sistema de autorización entre otros aspectos.
 - Definición de autorizaciones:
   - Se basa en un **orden de prioridad**
-  - **authorizeRequests()**: función principañ
+  - **authorizeRequests()**: función principal
     - Dentro se anidan **antMatchers** y **anyRequest**
       - antMatchers("urls"): especifica URL/S
         - Para cada antMatchers se especifica la autorización:
@@ -537,7 +536,7 @@ otros objetos.
 - Con @SessionScope se puede modificar
 
 ### Datos y acciones sensibles
-- Las aplicaciones web suelenn ser multiusuario y de acceso público
+- Las aplicaciones web suelen ser multiusuario y de acceso público
 - Problema de exposición de datos sensibles
   
 #### Implementación
@@ -581,6 +580,7 @@ otros objetos.
 
 #### Configuración
 - Se puede modificar la paginación mediante la configuración:
+
 ![Configuración de la paginación](conf_paginación.png)
 
 ### Transacciones
