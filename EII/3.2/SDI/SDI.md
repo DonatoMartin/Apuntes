@@ -71,25 +71,24 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
       - [Mostrar errores](#mostrar-errores)
       - [Agregar el validador](#agregar-el-validador)
       - [ValidationUtils](#validationutils)
-      - [Paginación](#paginación)
-  - [Tema 5: Web testing con Selenium](#tema-5-web-testing-con-selenium)
-  - [Tema 6: Desarrollo web con Nodejs 1](#tema-6-desarrollo-web-con-nodejs-1)
     - [Sesión](#sesión)
       - [HttpSession](#httpsession)
       - [Thymeleaf](#thymeleaf-1)
       - [Beans](#beans)
-    - [Datos y acciones sensible](#datos-y-acciones-sensible)
+    - [Datos y acciones sensibles](#datos-y-acciones-sensibles)
       - [Implementación](#implementación)
       - [DecisionManager](#decisionmanager)
       - [AccessDecision](#accessdecision)
-    - [Paginación](#paginación-1)
+    - [Paginación](#paginación)
       - [Page](#page)
       - [Controles](#controles)
       - [Configuración](#configuración-3)
     - [Transacciones](#transacciones)
     - [Logging](#logging)
-      - [Logger](#logger)
     - [Subida de ficheros](#subida-de-ficheros)
+      - [Procesamiento](#procesamiento)
+  - [Tema 5: Web testing con Selenium](#tema-5-web-testing-con-selenium)
+  - [Tema 6: Desarrollo web con Nodejs 1](#tema-6-desarrollo-web-con-nodejs-1)
   - [Tema 7: Desarrollo web con Nodejs 2](#tema-7-desarrollo-web-con-nodejs-2)
   - [Tema 8: Servicios web REST](#tema-8-servicios-web-rest)
   - [Tema 9: Servicios web SOAP](#tema-9-servicios-web-soap)
@@ -518,28 +517,6 @@ otros objetos.
   - **rejectIfEmpty(errors, <clave_del_campo>’, mensaje error)**
   - **rejectIfEmptyOrWhiteSpace (errors, <clave_del_campo>’, mensaje error)**
 
-#### Paginación
-- Cargar muchos elementos en una misma página es costoso y perjudica la experiencia de usuario
-
-
-
-## Tema 5: Web testing con Selenium
-- Tipos de tests:
-  - Funcional: Prueba de todos los enlaces web, conexiones, envío de datos...
-  - Usabilidad: Miden características de la interacción computador-máquina.
-  - Interface: Conexiones entre servidores.
-  - Compatibilidad: En navegadores, SSOO, móviles...
-  - Rendimiento:
-    - Pruebas de carga: volumen de usuarios/conexiones, datos, conexiones...
-    - Pruebas de estrés: Exponer al sistema a valores límite de demanda de recursos.
-  - Seguridad:
-    - Uso de URLs sin identificarse, con otros roles, ...
-  
-  
-
-
-## Tema 6: Desarrollo web con Nodejs 1
-
 ### Sesión
 - La aplicación crea una sesión para cada nuevo cliente
 - Se identifica con una ID, la cual se envía en una cookie
@@ -557,8 +534,7 @@ otros objetos.
 - Por defecto se gestionan como Singleton.
 - Con @SessionScope se puede modificar
 
-
-### Datos y acciones sensible
+### Datos y acciones sensibles
 - Las aplicaciones web suelenn ser multiusuario y de acceso público
 - Problema de exposición de datos sensibles
   
@@ -568,8 +544,20 @@ otros objetos.
 #### DecisionManager
 - Especialmente útil cuando las peticiones no pasan por un controlador
 - WebSecurityConfigurerAdapter declara diferentes políticas de acceso
+  - **Authenticated()** y **hasAuthority(role)** permiten el acceso a usuarios autenticados o con roles
+  - **accessDecisionManager(manager)** crear políticas de acceso especificas
 
 #### AccessDecision
+- Las comprobaciones de acceso se realiza en una clase que implementa **AccessDecisionVoter<FilterInvocation>**
+  - El retorno de **vote(authentication,filter,attributes)** determina si habrá acceso
+    - **ACCESS_DENIED**
+    - **ACCESS_GRANTED**
+    - **ACCESS_ABSTAIN**
+- Requiere sobrescribir los métodos supports, retornado true.
+- Para aplicar los AccessDecisionVoter en la configuración de seguridad:
+  - Se agrupan los AccessDecisionVoter(1-N) en un objeto **AccessDecisionManager**
+  - Se incluye la política .accessDecisionManager(manager) para un conjunto de URLs
+    - El decissionManager se agrega después de una política básica (Ej, permitAll())
 
 ### Paginación
 - Cargar muchos elementos en una misma página es costoso y perjudica la experiencia de usuario
@@ -578,20 +566,45 @@ otros objetos.
 - Objeto del sistema de paginación
 - Similar a una List, pero incluye más información relativa a la paginación	
 - Los repositorios retornarán este objeto
-- Deben recibir un parametro adicional **Pageable**
+  - También en servicios y controladores que manejen paginación
+- Los métodos deben recibir un parametro adicional **Pageable**
 
 #### Controles
+- La vista debe ofrecer navegación
+  - Se implementa en un fragmento
+- Se recomienda al menos:
+  - Página actual
+  - Páginas cercanas
+  - Primera y última
 
 #### Configuración
+- Se puede modificar la paginación mediante la configuración:
+![Configuración de la paginación](conf_paginación.png)
 
 ### Transacciones
+- La anotación **@Transactional** declara el uso de transacciones en un método o componente
 
 ### Logging
-
-#### Logger
+- Consiste en guardar información sobre eventos relativas a la aplicación
 
 ### Subida de ficheros
+#### Procesamiento
+- El controlador debe recibir el parámetro de tipo **File**
+  - Se puede utilizar el tipo **MultipartFile**
 
+## Tema 5: Web testing con Selenium
+- Tipos de tests:
+  - Funcional: Prueba de todos los enlaces web, conexiones, envío de datos...
+  - Usabilidad: Miden características de la interacción computador-máquina.
+  - Interface: Conexiones entre servidores.
+  - Compatibilidad: En navegadores, SSOO, móviles...
+  - Rendimiento:
+    - Pruebas de carga: volumen de usuarios/conexiones, datos, conexiones...
+    - Pruebas de estrés: Exponer al sistema a valores límite de demanda de recursos.
+  - Seguridad:
+    - Uso de URLs sin identificarse, con otros roles, ...
+  
+## Tema 6: Desarrollo web con Nodejs 1
 
 ## Tema 7: Desarrollo web con Nodejs 2
 
