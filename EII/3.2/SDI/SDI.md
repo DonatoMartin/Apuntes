@@ -58,8 +58,19 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
     - [Spring Security](#spring-security)
       - [Autenticación](#autenticación)
       - [Encriptación](#encriptación)
-      - [Configuración //TODO](#configuración-todo)
-      - [Autorización (HTTPSecurity)](#autorización-httpsecurity)
+      - [Configuración](#configuración-2)
+      - [Autorización (HttpSecurity)](#autorización-httpsecurity)
+      - [CSRF (Cross-site request forgery)](#csrf-cross-site-request-forgery)
+      - [UserDetails](#userdetails)
+      - [UserDetailsService](#userdetailsservice)
+      - [Lógica de negocio](#lógica-de-negocio)
+      - [Autenticación con Thymeleaf](#autenticación-con-thymeleaf)
+      - [Detectar fuerza bruta](#detectar-fuerza-bruta)
+    - [Validación de datos](#validación-de-datos)
+      - [Validador](#validador)
+      - [Mostrar errores](#mostrar-errores)
+      - [Agregar el validador](#agregar-el-validador)
+      - [ValidationUtils](#validationutils)
       - [Paginación](#paginación)
   - [Tema 5: Web testing con Selenium](#tema-5-web-testing-con-selenium)
   - [Tema 6: Desarrollo web con Nodejs 1](#tema-6-desarrollo-web-con-nodejs-1)
@@ -74,7 +85,7 @@ Sistemas Distribuidos e Internet es una asignatura enfocada en el desarrollo sof
     - [Paginación](#paginación-1)
       - [Page](#page)
       - [Controles](#controles)
-      - [Configuración](#configuración-2)
+      - [Configuración](#configuración-3)
     - [Transacciones](#transacciones)
     - [Logging](#logging)
       - [Logger](#logger)
@@ -385,9 +396,10 @@ otros objetos.
 - Con JQuery: $(\<selector>).load(\<url>)
 
 ### Configuración
+- Spring Boot incluye una genérica por defecto.
 
 #### @Configuration
-- No sé
+- Las clases base de configuración del framework se pueden utilizar sobreescribiendo métodos o utilizando métodos definidos en la clase de configuración.
 
 #### @Bean
 - Muchas implementan Beans.
@@ -409,10 +421,11 @@ otros objetos.
   
 ##### LocaleChangeInterceptor
 - **LocaleChangeInterceptor** es un interceptor *implementado en el framework* relativo a la internacionalización.
+- Se define un parámetro en la instancia(p.e: "lang")
   
 #### LocaleResolver
 - Es un objeto del framework que permite hacer cambios automáticos de idioma.
-- Basado en sesiones, cookies y ... accept-language
+- Basado en sesiones, cookies y cabeceras accept-language
   
 #### Mensajes
 - Las cadenas de texto internacionalizadas se definen en ficheros de propiedades(.properties)
@@ -427,16 +440,87 @@ otros objetos.
 - **BCryptPasswordEncoder** soporta la encriptación de forma ágil
   - Puede usarse como un bean
 
-#### Configuración //TODO
+#### Configuración
+- Hay que hacer una clase que herede de **WebSecurityConfigurerAdapter**
+  - Debe incluir las anotaciones:
+    - **@Configuration**
+    - **@EnableWebSecurity**
 
-#### Autorización (HTTPSecurity)
+#### Autorización (HttpSecurity)
 - Sobreesceibimos el método **configure(HttpSecurity http)**
-- Permite configurar ...
-- 
+- Permite configurar el sistema de autorización entre otros aspectos.
+- Definición de autorizaciones:
+  - Se basa en un **orden de prioridad**
+  - **authorizeRequests()**: función principañ
+    - Dentro se anidan **antMatchers** y **anyRequest**
+      - antMatchers("urls"): especifica URL/S
+        - Para cada antMatchers se especifica la autorización:
+          - **permitAll()**: cualquier petición puede acceder
+          - **authenticated()**: cualquier usuario autenticado puede acceder (independientemente del role)
+          - **hasAuthority(“Nombres de Roles”)**: para acceder el usuario autenticado debe tener el **Role** especificado
+- Formulario de autenticación / login
+  - Función **formLogin()**, no se incluye en **authorizeRequests()**, pero se concatena con un **and()**
+  ![ejemplo_and](ejemplo_and.png)
+  - Dentro se anidan:
+    - **loginPage(“URL”)**: URL del formulario de login
+    - Tipo de autenticación (permitAll(), autenticated() …)
+    - **defaultSucessUrl +(“URL”)**: URL que se carga después de la autenticación valida
+    - **failureUrl(“URL")**: URL de carga en caso de fallo en la autenticación.
+    - **failureHandler(authenticationFailureHandler())**: Manejador que captura el evento de fallo en la autenticación.
+- Sistema **logout**
+  - Función **logout()**
+  - Se concatena con **and()**
+  - Dentro se anidan entre otros:
+    - Tipo de autenticación (permitAll(), autenticated() …)
+    - **logoutSucessUrl(“URL”)**: redirección después de cerrar sesión
+
+#### CSRF (Cross-site request forgery)
+- Configuración de seguridad activada por defecto
+- Se puede desactivar con **disable()**, concatenandose con un **and()**
+- Se incluyen tokens como hidden input para mayor seguridad
+
+#### UserDetails
+- Identificador único
+- password
+- Role/s
+
+#### UserDetailsService
+- Servicio encargado de crear los UserDetails
+- Obtiene el usuario asociado al username
+- Crea una colección **GrantedAuthority**
+- Crea un objeto de tipo User Details y lo retorna
+
+#### Lógica de negocio
+- **getContext().getAuthentication()** retorna el objeto **Authentication**
+- Authentication contiene la información del usuario autenticado y permite desautenticarlo entre otras cosas
+
+#### Autenticación con Thymeleaf
+- **sec:authentication**: información sobre el cliente autenticado.
+- **sec:authorize**: información sobre autorizaciones.
+
+#### Detectar fuerza bruta
+![fuerza bruta](fuerza_bruta.png)
+
+### Validación de datos
+#### Validador
+- Se recomienda implementar un validator por proceso/formulario
+- Tienen la función **validate(Object, Errors)**
+  - errors.**rejectValue(<clave_del_campo> ,<mensaje_de_error> )**
+
+#### Mostrar errores
+![Mostrar errores](mostrar_errores.png)
+
+#### Agregar el validador
+![Agregar validador](agregar_validador.png)
+
+#### ValidationUtils
+- Clase estática de utilidades de validación
+  - **rejectIfEmpty(errors, <clave_del_campo>’, mensaje error)**
+  - **rejectIfEmptyOrWhiteSpace (errors, <clave_del_campo>’, mensaje error)**
 
 #### Paginación
 - Cargar muchos elementos en una misma página es costoso y perjudica la experiencia de usuario
-- 
+
 
 
 ## Tema 5: Web testing con Selenium
