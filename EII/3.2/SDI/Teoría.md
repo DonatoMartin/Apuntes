@@ -338,19 +338,19 @@ URLs.
 
 **Model-1.5**: JSPs para presentación y control, y JavaBeans para la lógica.
 
-![Model-1.5 diagram](image.png)
+![Model-1.5 diagram](imgs/image.png)
 
 **Model-2**: Model-View-Controller = JavaBeans-JSPs-Servlet
 
-![Model-2 diagram](image-1.png)
+![Model-2 diagram](imgs/image-1.png)
 
 **Modelo N-capas**: Modelo de Brown n-capas, contiene un patrón fachada entre capas, no permitiendo dependencias a través de estas. 
-![Model-layers diagram](image-2.png)
+![Model-layers diagram](imgs/image-2.png)
 Layers y Tiers:
 - Layer: capa arquitectónica (presentación, lógica, persistencia...)
 - Tier: capa física (servidor web, servidor de aplicaciones, servidor BBDD)
 
-![Ejemplo layers tiers](image-3.png)
+![Ejemplo layers tiers](imgs/image-3.png)
 
 En la asignatura se usarán los siguientes patrones
 
@@ -364,7 +364,7 @@ En la asignatura se usarán los siguientes patrones
 #### Fachada
 - Interfaz único y simplificado de los servicios más generales de un subsistema.
 
-![Ejemplo Fachada](Fachada.png)
+![Ejemplo Fachada](img/Fachada.png)
 
 #### DTO (Data Transfer Object)
 - Utilizado para transferir datos entre subsistemas
@@ -460,7 +460,7 @@ otros objetos.
           - **hasAuthority(“Nombres de Roles”)**: para acceder el usuario autenticado debe tener el **Role** especificado
 - Formulario de autenticación / login
   - Función **formLogin()**, no se incluye en **authorizeRequests()**, pero se concatena con un **and()**
-  ![ejemplo_and](ejemplo_and.png)
+  ![ejemplo_and](imgs/ejemplo_and.png)
   - Dentro se anidan:
     - **loginPage(“URL”)**: URL del formulario de login
     - Tipo de autenticación (permitAll(), autenticated() …)
@@ -499,7 +499,7 @@ otros objetos.
 - **sec:authorize**: información sobre autorizaciones.
 
 #### Detectar fuerza bruta
-![fuerza bruta](fuerza_bruta.png)
+![fuerza bruta](imgs/fuerza_bruta.png)
 
 ### Validación de datos
 #### Validador
@@ -508,10 +508,10 @@ otros objetos.
   - errors.**rejectValue(<clave_del_campo> ,<mensaje_de_error> )**
 
 #### Mostrar errores
-![Mostrar errores](mostrar_errores.png)
+![Mostrar errores](imgs/mostrar_errores.png)
 
 #### Agregar el validador
-![Agregar validador](agregar_validador.png)
+![Agregar validador](imgs/agregar_validador.png)
 
 #### ValidationUtils
 - Clase estática de utilidades de validación
@@ -581,7 +581,7 @@ otros objetos.
 #### Configuración
 - Se puede modificar la paginación mediante la configuración:
 
-![Configuración de la paginación](conf_paginación.png)
+![Configuración de la paginación](imgs/conf_paginación.png)
 
 ### Transacciones
 - La anotación **@Transactional** declara el uso de transacciones en un método o componente
