@@ -338,19 +338,19 @@ URLs.
 
 **Model-1.5**: JSPs para presentación y control, y JavaBeans para la lógica.
 
-![Model-1.5 diagram](imgs/image.png)
+![Model-1.5 diagram](imgs/diagram-model-1.5.png)
 
 **Model-2**: Model-View-Controller = JavaBeans-JSPs-Servlet
 
-![Model-2 diagram](imgs/image-1.png)
+![Model-2 diagram](imgs/diagram-model-2.png)
 
 **Modelo N-capas**: Modelo de Brown n-capas, contiene un patrón fachada entre capas, no permitiendo dependencias a través de estas. 
-![Model-layers diagram](imgs/image-2.png)
+![Model-layers diagram](imgs/diagram-model-layers.png)
 Layers y Tiers:
 - Layer: capa arquitectónica (presentación, lógica, persistencia...)
 - Tier: capa física (servidor web, servidor de aplicaciones, servidor BBDD)
 
-![Ejemplo layers tiers](imgs/image-3.png)
+![Ejemplo layers tiers](imgs/diagram-model-example-layers-tiers.png)
 
 En la asignatura se usarán los siguientes patrones
 
