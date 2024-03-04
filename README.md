@@ -12,7 +12,7 @@ Repositorio de apuntes y recursos informáticos descentralizados.
 
 <a href="https://github.com/marco-qg"><img alt="Github de Marco" src="https://img.shields.io/badge/Marco-marco--qg-default?logo=github"></a>
 
-**Participantes**
+**Colaboradores**
 
 <a href="https://github.com/algafer"><img alt="Github de Álvaro" src="https://img.shields.io/badge/Álvaro-algafer-red?logo=github"></a>
 
